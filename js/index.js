@@ -1,3 +1,4 @@
+const alarmTime = new AlarmTimes();
 const digitalClock = document.getElementById("digitalClock");
 const alarm = document.getElementById("alarm");
 const setAlarmButton = document.getElementById("setAlarmButton");
@@ -16,6 +17,9 @@ const ctx = canvas.getContext("2d");
 let radius = canvas.height / 2;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
+
+alarmTime.loadFromLocal();
+alarmTime.render();
 
 // a function to show the current digital time on the page
 const showCurrentTime = function() {
@@ -134,4 +138,100 @@ function drawFace(ctx, radius) {
       ctx.rotate(-pos);
   };
 
-  
+  setInterval(drawClock, 1000);
+  setInterval(showCurrentTime, 1000);
+
+  // The method checks the alarm times and plays the alarm sound 
+function checkAlarm() {
+    let hoursNow = digitalClock.innerText[0] + digitalClock.innerText[1];
+    let minutesNow = digitalClock.innerText[5] + digitalClock.innerText[6];
+    let meridiemNow = digitalClock.innerText[13] + digitalClock.innerText[14];
+    const alarmsArray = alarmTime.alarms;
+    for(let i = 0; i < alarmsArray.length; i++) {
+        const currentAlarm = alarmsArray[i];
+        if(currentAlarm.alarmTime == `${hoursNow}:${minutesNow} ${meridiemNow}` && alarmOn) {
+            myAudio.play();
+        };
+    };    
+};
+setInterval(checkAlarm, 1000);
+
+// event listeners 
+setAlarmButton.addEventListener('click', function() {
+    const alarmValue = alarm.value;
+    let hoursAlarm = `${alarmValue[0]}${alarmValue[1]}`;
+    const minutesAlarm = `${alarmValue[3]}${alarmValue[4]}`
+    let meridiemAlarm = 'AM';
+    if (alarmValue === '') {
+        alarm.style.border = "1px solid red";
+        alert("Please select a time.");
+        return false;
+    } else {
+        alarm.style.border = "1px solid grey";
+    };
+    if (hoursAlarm >= noon)
+    {
+        meridiemAlarm = "PM";
+    };
+    if (hoursAlarm > noon)
+    {
+        hoursAlarm = hoursAlarm - 12;
+        hoursAlarm = '0' + hoursAlarm;
+    };
+    const alarmDisplay = `${hoursAlarm}:${minutesAlarm} ${meridiemAlarm}`;
+    alarmTime.addalarm(alarmDisplay);
+    alarmTime.saveToLocal();
+    alarmTime.render();
+    alarm.value = '';
+});
+
+alarmList.addEventListener('click', function(event) {
+    let element = event.target;
+    let dataId = element.getAttribute("data-id");
+    alarmTime.deleteAlarm(dataId);
+    alarmTime.saveToLocal();
+    alarmTime.render();   
+});
+
+const pauseAudio = function() {
+    myAudio.pause();
+    alarmOn = false;
+    myAudio.currentTime = 0;
+    stopAlarm[0].style.opacity = "0";
+    for(let i = 0; i < page.length; i++) {
+        page[i].style.opacity = "1";
+    };
+    setTimeout(() => {
+        alarmOn = true;
+    }, 60000);
+};
+
+function toPause() {
+    for(let i = 0; i < page.length; i++) {
+        page[i].style.opacity = "0.2";
+    };    
+    stopAlarm[0].style.opacity = "1";
+    confirmStopButton.onclick = pauseAudio;
+    snoozeButton.onclick = function() {
+        pauseAudio();
+        const newSnoozedDate = new Date(timeNow.getTime() + 5*60000);
+        let hoursSnoozed = newSnoozedDate.getHours();
+        let minutesSnoozed = newSnoozedDate.getMinutes(); 
+        let meridiemSnoozed = 'AM';
+        if (hoursSnoozed >= noon)
+        {
+            meridiemSnoozed = "PM";
+        };
+        if (hoursSnoozed > noon)
+        {
+            hoursSnoozed = hoursSnoozed - 12;
+            hoursSnoozed = '0' + hoursSnoozed;
+        };
+    const alarmSnoozed = `${hoursSnoozed}:${minutesSnoozed} ${meridiemSnoozed}`;
+    alarmTime.addalarm(alarmSnoozed);
+    alarmTime.saveToLocal();
+    alarmTime.render();
+    };
+};
+
+myAudio.addEventListener('play',toPause);
