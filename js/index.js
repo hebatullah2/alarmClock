@@ -28,7 +28,7 @@ const showCurrentTime = function() {
     let minutes = timeNow.getMinutes();
     let seconds = timeNow.getSeconds();
     let meridiem = "AM";
- 
+   
     // Set hours
 	if (hours >= noon)
 	{
@@ -41,7 +41,7 @@ const showCurrentTime = function() {
         hours = '0' + hours;
 	};
  
-    if (meridiem == "AM") {
+    if (meridiem == "AM" && hours < 10) {
         hours = '0' + hours;
     };
 
@@ -201,9 +201,10 @@ const pauseAudio = function() {
     for(let i = 0; i < page.length; i++) {
         page[i].style.opacity = "1";
     };
+    const secondsNow = digitalClock.innerText[10] + digitalClock.innerText[11];
     setTimeout(() => {
         alarmOn = true;
-    }, 60000);
+    }, 60000 - secondsNow*1000);
 };
 
 function toPause() {
@@ -235,3 +236,5 @@ function toPause() {
 };
 
 myAudio.addEventListener('play',toPause);
+
+
