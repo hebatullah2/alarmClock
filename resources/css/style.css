@@ -115,6 +115,8 @@ li, #stopAlarm {
 }
 
 .stopAlarm {
+    display: grid;
+    grid-gap: 10px 2em;
     opacity: 0; 
     position: absolute;
     background-color: #06d5fa;
