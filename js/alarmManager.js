@@ -3,7 +3,7 @@ const createAlarmHtml = (id, alarm) => {
     const html = 
                `<li>
                     <section>
-                            <span>Alarm : ${alarm} </span>
+                            <span>Alarm &#8273; ${alarm}</span>
                             <button id="delete" data-id=${id}>Delete</button>
                     </section>
                 </li>`
