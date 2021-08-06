@@ -1,3 +1,12 @@
+body {
+    font-family: 'Bebas Neue', cursive;
+    background-color: #ade7f1;
+    color: #222;
+    margin: 0px;
+    padding: 0px;
+    text-transform: uppercase;
+}
+
 .page {
     width: 80%;
     max-width: 960px;
@@ -6,15 +15,6 @@
     background-color: #ade7f1;
     border-radius: 5px;
     opacity: 1;
-}
-
-body {
-    font-family: 'Bebas Neue', cursive;
-    background-color: #ade7f1;
-    color: #222;
-    margin: 0px;
-    padding: 0px;
-    text-transform: uppercase;
 }
 
 header {
@@ -29,24 +29,18 @@ header {
     display: block;
     padding: 5px 0px;
 }
-  
+
+label {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
 #alarm {
     padding: 15px 15px;
     margin: 15px 15px;
     border: 1px solid grey;
-}
-
-#setAlarmButton {
-    background-color: rgb(65, 158, 245);
-    width: 300px;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 24px;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 0;
-    margin-top: 20px;
-    letter-spacing: 2px;
 }
 
 .input-container input {
@@ -69,10 +63,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     width: auto;
 }
 
-label {
+#setAlarmButton {
+    background-color: rgb(65, 158, 245);
+    width: 300px;
     font-family: 'Bebas Neue', cursive;
-    font-weight: bold;
     font-size: 24px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-top: 20px;
     letter-spacing: 2px;
 }
 
