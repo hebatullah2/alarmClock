@@ -219,6 +219,9 @@ function toPause() {
         let hoursSnoozed = newSnoozedDate.getHours();
         let minutesSnoozed = newSnoozedDate.getMinutes(); 
         let meridiemSnoozed = 'AM';
+	if (meridiemSnoozed == "AM" && hoursSnoozed < 10) {
+            hoursSnoozed = '0' + hoursSnoozed;
+        };
         if (hoursSnoozed >= noon)
         {
             meridiemSnoozed = "PM";
@@ -228,10 +231,7 @@ function toPause() {
             hoursSnoozed = hoursSnoozed - 12;
             hoursSnoozed = '0' + hoursSnoozed;
         };
-	if (meridiemSnoozed == "AM" && hoursSnoozed < 10) {
-            hoursSnoozed = '0' + hoursSnoozed;
-        };
-        if (minutesSnoozed < 10)
+	if (minutesSnoozed < 10)
         {
             minutesSnoozed = "0" + minutesSnoozed;
         };
