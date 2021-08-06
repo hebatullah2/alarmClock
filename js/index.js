@@ -173,15 +173,12 @@ setAlarmButton.addEventListener('click', function() {
     if (hoursAlarm >= noon)
     {
         meridiemAlarm = "PM";
-        console.log(hoursAlarm);
     };
     if (hoursAlarm > noon)
     {
         hoursAlarm = hoursAlarm - 12;
-        console.log(hoursAlarm);
         if (hoursAlarm < '10') {
             hoursAlarm = '0' + hoursAlarm;
-            console.log(hoursAlarm);
         }
     };
     if(hoursAlarm == '00') {
@@ -223,7 +220,6 @@ function toPause() {
     stopAlarm[0].style.opacity = "1";
     confirmStopButton.onclick = pauseAudio;
     snoozeButton.onclick = function() {
-        console.log("hit");
         pauseAudio();
         const newSnoozedDate = new Date(timeNow.getTime() + 5*60000);
         
