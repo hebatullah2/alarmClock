@@ -180,6 +180,9 @@ setAlarmButton.addEventListener('click', function() {
             hoursAlarm = '0' + hoursAlarm;
         }
     };
+    if(hoursAlarm == '00') {
+        hoursAlarm = 12;
+    };
     const alarmDisplay = `${hoursAlarm}:${minutesAlarm} ${meridiemAlarm}`;
     alarmTime.addalarm(alarmDisplay);
     alarmTime.saveToLocal();
