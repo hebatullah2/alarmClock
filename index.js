@@ -228,10 +228,17 @@ function toPause() {
             hoursSnoozed = hoursSnoozed - 12;
             hoursSnoozed = '0' + hoursSnoozed;
         };
-    const alarmSnoozed = `${hoursSnoozed}:${minutesSnoozed} ${meridiemSnoozed}`;
-    alarmTime.addalarm(alarmSnoozed);
-    alarmTime.saveToLocal();
-    alarmTime.render();
+	if (meridiemSnoozed == "AM" && hoursSnoozed < 10) {
+            hoursSnoozed = '0' + hoursSnoozed;
+        };
+        if (minutesSnoozed < 10)
+        {
+            minutesSnoozed = "0" + minutesSnoozed;
+        };
+	const alarmSnoozed = `${hoursSnoozed}:${minutesSnoozed} ${meridiemSnoozed}`;
+	alarmTime.addalarm(alarmSnoozed);
+	alarmTime.saveToLocal();
+	alarmTime.render();
     };
 };
 
