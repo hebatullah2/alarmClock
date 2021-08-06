@@ -1,37 +1,61 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html>
 
-You can use the [editor on GitHub](https://github.com/hebatullah2/alarmClock/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+    <head>
+        <title>Clock</title>
+        <link rel="shortcut icon" href="#">
+        <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link href="./resources/css/style.css" rel="stylesheet" type="text/css">
+    </head>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+    <body>
+        <section class="page"> 
 
-### Markdown
+            <header>
+                <h1>CLOCK APPLICATION</h1>
+            </header>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+            <!-- Digital clock -->
+            <h1 id="digitalClock"></h1>
 
-```markdown
-Syntax highlighted code block
+            <!-- Analog clock -->
+            <canvas id="myCanvas" width="300" height="300" style="background-color:#333"></canvas>
+            <br><br>
 
-# Header 1
-## Header 2
-### Header 3
+            <!-- Choose alarm time -->
+            <div class="input-container">
+                <label for="alarm">Alarm</label>
+                <input type="time" id="alarm">
+            </div>
 
-- Bulleted
-- List
+            <!-- Set alarm button -->
+            <button type="submit" id="setAlarmButton">Set Alarm</button>
 
-1. Numbered
-2. List
+        </section>
 
-**Bold** and _Italic_ and `Code` text
+        <!-- Alarm audio -->
+        <audio id="myAudio">
+            <source src="./resources/audio/alarmSound.wav" type="audio/wav" muted="muted">
+            Your browser does not support the audio element.
+        </audio>
 
-[Link](url) and ![Image](src)
-```
+        <!-- Popup box to stop the alarm  -->
+        <div class="stopAlarm">
+            <span> Do you want to stop or snooze the alarm?</span>
+            <button id="confirmStopButton">Stop</button>
+            <button id="snoozeButton">Snooze</button>
+        </div>
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+        <!--Create the alarm cards-->
+        <ul id="alarmList" class="flex-container">
 
-### Jekyll Themes
+        </ul>
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hebatullah2/alarmClock/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+        <!-- Javascript files-->
+        <script type="text/javascript" src="./js/alarmManager.js"></script>
+        <script type="text/javascript" src="./js/index.js"></script>
 
-### Support or Contact
+    </body>
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+</html>
