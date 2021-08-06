@@ -176,7 +176,9 @@ setAlarmButton.addEventListener('click', function() {
     if (hoursAlarm > noon)
     {
         hoursAlarm = hoursAlarm - 12;
-        hoursAlarm = '0' + hoursAlarm;
+        if (hoursAlarm < '10') {
+            hoursAlarm = '0' + hoursAlarm;
+        }
     };
     const alarmDisplay = `${hoursAlarm}:${minutesAlarm} ${meridiemAlarm}`;
     alarmTime.addalarm(alarmDisplay);
