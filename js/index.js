@@ -162,6 +162,7 @@ setAlarmButton.addEventListener('click', function() {
     let hoursAlarm = `${alarmValue[0]}${alarmValue[1]}`;
     const minutesAlarm = `${alarmValue[3]}${alarmValue[4]}`
     let meridiemAlarm = 'AM';
+    console.log(hoursAlarm);
     if (alarmValue === '') {
         alarm.style.border = "1px solid red";
         alert("Please select a time.");
@@ -172,13 +173,19 @@ setAlarmButton.addEventListener('click', function() {
     if (hoursAlarm >= noon)
     {
         meridiemAlarm = "PM";
+        console.log(hoursAlarm);
     };
     if (hoursAlarm > noon)
     {
         hoursAlarm = hoursAlarm - 12;
+        console.log(hoursAlarm);
         if (hoursAlarm < '10') {
             hoursAlarm = '0' + hoursAlarm;
+            console.log(hoursAlarm);
         }
+    };
+    if(hoursAlarm == '00') {
+        hoursAlarm = 12;
     };
     const alarmDisplay = `${hoursAlarm}:${minutesAlarm} ${meridiemAlarm}`;
     alarmTime.addalarm(alarmDisplay);
